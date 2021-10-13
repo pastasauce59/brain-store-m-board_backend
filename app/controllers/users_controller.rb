@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     
       # if the user exists and their password matches, log them in
       if user 
-        # && guest.authenticate(params[:password])
+        # && user.authenticate(params[:password])
         # save user_id in session so we can use it in future requests
         #   session[:user_id] = user.id
         # return the user in the response
