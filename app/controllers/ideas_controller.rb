@@ -1,10 +1,15 @@
 class IdeasController < ApplicationController
 
-skip_before_action :logged_in?, only: [:index, :create, :update]
+skip_before_action :logged_in?, only: [:index, :create, :update, :public_ideas, :destroy]
 
 def index
     ideas = Idea.all
     render json: ideas
+end
+
+def public_ideas
+    public = Idea.where(:private => false)
+    render json: public
 end
 
 def create
