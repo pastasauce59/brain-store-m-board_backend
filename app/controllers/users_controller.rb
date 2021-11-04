@@ -8,17 +8,10 @@ class UsersController < ApplicationController
   end
 
   def login
-    # find the user by their username
     user = User.find_by(username: params[:username])
-    
-      # if the user exists and their password matches, log them in
       if user && user.authenticate(params[:password])
-        # save user_id in session so we can use it in future requests
-        #   session[:user_id] = user.id
-        # return the user in the response
         render json: { user: UserSerializer.new(user), token: encode_token({user_id: user.id})}
       else
-        # for invalid username/password combos, send error messages to the front end
         render json: { error: "Invalid username or password." }, status: :unauthorized
       end
   end

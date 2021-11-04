@@ -2,8 +2,7 @@ class ApplicationController < ActionController::API
     before_action :logged_in?
 
     def encode_token(payload)
-        JWT.encode(payload, "exp_secret")
-        # JWT.encode(payload, "exp_secret", "HS256")
+        JWT.encode(payload, "exp_secret", "HS256")
     end
 
     def logged_in?
